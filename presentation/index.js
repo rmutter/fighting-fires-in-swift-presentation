@@ -67,7 +67,17 @@ const images = {
   coolDog: require("../assets/cool-dog.jpg"),
   sentryLogo: require("../assets/sentry-icon.png"),
   newRelicLogo: require("../assets/new-relic-logo.jpg"),
-  fabricLogo: require("../assets/fabric-logo.png")
+  fabricLogo: require("../assets/fabric-logo.png"),
+  alexGithub: require("../assets/github/alex-github.png"),
+  anyaGithub: require("../assets/github/anya-github.png"),
+  bayleeGithub: require("../assets/github/baylee-github.jpg"),
+  deanGithub: require("../assets/github/dean-github.jpg"),
+  leeGithub: require("../assets/github/lee-github.png"),
+  nickGithub: require("../assets/github/nick-github.jpg"),
+  rudyGithub: require("../assets/github/rudy-github.png"),
+  tonyGithub: require("../assets/github/tony-github.png"),
+  winnieGithub: require("../assets/github/winnie-github.png"),
+  zachGithub: require("../assets/github/zach-github.jpg")
 };
 
 preloader(images);
@@ -84,7 +94,7 @@ export default class Presentation extends React.Component {
     return (
       <Spectacle theme={theme}>
         <Deck transition={["slide"]} progress="pacman">
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>
               Fighting Fires in Swift
             </Heading>
@@ -100,7 +110,7 @@ export default class Presentation extends React.Component {
               </Fill>
             </Layout>
           </Slide>
-          <Slide bgImage={images.rudyMagic.replace("/", "")} bgDarken={0.75}>
+          <Slide bgImage={images.rudyMagic.replace("/", "")} bgDarken={0.75} maxWidth={1250}>
             <Heading fit caps>
               Rudy Mutter
             </Heading>
@@ -111,7 +121,7 @@ export default class Presentation extends React.Component {
               <ListItem><Image src={images.tinyEyeLogo.replace("/", "")} margin="0" height="35px"/> Recently just launched Tiny Eye, a VR iOS & Android game!</ListItem>
             </List>
           </Slide>
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>
               Quick Backstory!
             </Heading>
@@ -120,7 +130,7 @@ export default class Presentation extends React.Component {
             </Text>
             <Image src={images.yetiHead.replace("/", "")} margin="60px auto 0" height="300px"/>
           </Slide>
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>Chelsea Does: Silicon Valley on Netflix</Heading>
             <Layout>
               <Fill>
@@ -151,25 +161,25 @@ export default class Presentation extends React.Component {
               </Fill>
             </Layout>
           </Slide>
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>Jan 22: Launch Evening</Heading>
             <Image src={images.netflixAndChill.replace("/", "")} margin="60px auto 0" height="300px"/>
           </Slide>
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>Jan 23: Launch Morning</Heading>
             <Image src={images.everythingIsFine.replace("/", "")} margin="60px auto 0" height="300px"/>
           </Slide>
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>What's Going Wrong!?</Heading>
             <Layout>
               <Fit>
                 <Image src={images.plivoLogs.replace("/", "")} margin="60px 60px 0" height="300px"/>
               </Fit>
               <Fill>
-                <List padding="60px 0 0">
+                <List padding="20px 0 0">
                   <ListItem>100s of Verification Codes sent</ListItem>
                   <ListItem>Small amount of users verified</ListItem>
-                  <ListItem>SMS Logs saying Undelivered</ListItem>
+                  <ListItem>SMS Logs saying "Undelivered"</ListItem>
                   <ListItem>Our phone number was banned 😅</ListItem>
                 </List>
               </Fill>
@@ -203,7 +213,7 @@ export default class Presentation extends React.Component {
                   <ListItem>User enters their number</ListItem>
                   <ListItem>Server pings telephony service to text code</ListItem>
                   <ListItem>User inputs code to verify their number</ListItem>
-                  <ListItem>Pretty standard</ListItem>
+                  <ListItem>Pretty standard auth flow</ListItem>
                 </List>
               </Fill>
             </Layout>
@@ -247,7 +257,7 @@ export default class Presentation extends React.Component {
               </Fill>
             </Layout>
           </Slide>
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>Adding Contacts Cont.</Heading>
             <Text textSize="1.5em" textColor="secondary" margin="20px 0 0">
               Store numbers appropriate to user's country
@@ -280,7 +290,7 @@ export default class Presentation extends React.Component {
               margin="20px auto"
             />
           </Slide>
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>Saving & Creating Excuses</Heading>
             <Layout>
               <Fit>
@@ -335,7 +345,7 @@ export default class Presentation extends React.Component {
               </Fill>
             </Layout>
           </Slide>
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>Scheduling Excuses (Server)</Heading>
             <Text textSize="1.5em" textColor="secondary" margin="40px 0 0">
               Schedule a task to ping the telephony service X mins later
@@ -400,7 +410,7 @@ export default class Presentation extends React.Component {
               Submitted emergency build to Apple, approved next day 👏
             </Text>
           </Slide>
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>What did we do wrong?</Heading>
             <Layout>
               <Fill>
@@ -416,7 +426,7 @@ export default class Presentation extends React.Component {
               </Fit>
             </Layout>
           </Slide>
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>What did we do right?</Heading>
             <Text textSize="2em" textColor="secondary" margin="40px 0">
               Analytics and Monitoring!
@@ -432,31 +442,43 @@ export default class Presentation extends React.Component {
                 <Image src={images.fabricLogo.replace("/", "")} height="200px"/>
               </Fill>
             </Layout>
+            <Layout>
+              <Fill>
+                <Text textSize="1.5em" textColor="secondary" margin="20px 0">
+                  99.9% crash free users
+                </Text>
+              </Fill>
+              <Fill>
+                <Text textSize="1.5em" textColor="secondary" margin="20px 0">
+                  Still ~700 users/day
+                </Text>
+              </Fill>
+            </Layout>
           </Slide>
-          <Slide bgImage={images.hundredEmoji.replace("/", "")} bgDarken={0.75}>
+          <Slide bgImage={images.hundredEmoji.replace("/", "")} bgDarken={0.75} maxWidth={1250}>
             <Heading fit caps>Thanks to Devs @ Yeti!</Heading>
             <Layout>
               <Fill>
                 <List padding="60px 0 0 0">
-                  <ListItem>@alekhinen</ListItem>
-                  <ListItem>@anyatran</ListItem>
-                  <ListItem>@baylee</ListItem>
-                  <ListItem>@leemcdole</ListItem>
-                  <ListItem>@paolopaolopaolo</ListItem>
+                  <ListItem><Image className="align-middle" margin="0" src={images.nickGithub.replace("/", "")} height="60px"/> @alekhinen</ListItem>
+                  <ListItem><Image className="align-middle" margin="0" src={images.anyaGithub.replace("/", "")} height="60px"/> @anyatran</ListItem>
+                  <ListItem><Image className="align-middle" margin="0" src={images.bayleeGithub.replace("/", "")} height="60px"/> @baylee</ListItem>
+                  <ListItem><Image className="align-middle" margin="0" src={images.leeGithub.replace("/", "")} height="60px"/> @leemcdole</ListItem>
+                  <ListItem><Image className="align-middle" margin="0" src={images.deanGithub.replace("/", "")} height="60px"/> @paolopaolopaolo</ListItem>
                 </List>
               </Fill>
               <Fill>
                 <List padding="60px 0 0 0">
-                  <ListItem>@rmutter</ListItem>
-                  <ListItem>@tonydotsc</ListItem>
-                  <ListItem>@walkingtowork</ListItem>
-                  <ListItem>@winnietong</ListItem>
-                  <ListItem>@ZachGawlik</ListItem>
+                  <ListItem><Image className="align-middle" margin="0" src={images.rudyGithub.replace("/", "")} height="60px"/> @rmutter</ListItem>
+                  <ListItem><Image className="align-middle" margin="0" src={images.tonyGithub.replace("/", "")} height="60px"/> @tonydotsc</ListItem>
+                  <ListItem><Image className="align-middle" margin="0" src={images.alexGithub.replace("/", "")} height="60px"/> @walkingtowork</ListItem>
+                  <ListItem><Image className="align-middle" margin="0" src={images.winnieGithub.replace("/", "")} height="60px"/> @winnietong</ListItem>
+                  <ListItem><Image className="align-middle" margin="0" src={images.zachGithub.replace("/", "")} height="60px"/> @ZachGawlik</ListItem>
                 </List>
               </Fill>
             </Layout>
           </Slide>
-          <Slide bgImage={images.chelseaQuestions.replace("/", "")} bgDarken={0.5}>
+          <Slide bgImage={images.chelseaQuestions.replace("/", "")} bgDarken={0.5} maxWidth={1250}>
             <Image src={images.yetiHead.replace("/", "")} margin="0" height="300px"/>
             <Heading fit caps>Any Questions?</Heading>
           </Slide>

@@ -18,6 +18,5 @@ static func findContact(number: String) -> ABRecordRef? {
       }
     }
   }
-
   return nil
 }
