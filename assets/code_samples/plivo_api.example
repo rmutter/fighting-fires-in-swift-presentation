@@ -1,0 +1,18 @@
+def send_text(destination, text, source_phone_number):
+    params = {
+        "src": source_phone_number,
+        "dst": destination,
+        "text": text
+    }
+    return plivo.RestAPI(settings.PLIVO_ID, settings.PLIVO_SECRET).send_message(params)
+
+
+def send_call(destination, country):
+    site = Site.objects.get_current()
+    params = {
+        "from": settings.PLIVO_VOICE_NUMBER[country],
+        "to": destination,
+        "answer_url": "{}://{}/api/v1/plivo_answer/".format("https" if settings.USING_SSL else "http", site.domain),
+        "time_limit": 35
+    }
+    return plivo.RestAPI(settings.PLIVO_ID, settings.PLIVO_SECRET).make_call(params)

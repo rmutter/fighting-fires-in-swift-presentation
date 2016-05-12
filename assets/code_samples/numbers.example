@@ -1,0 +1,3 @@
+let country = AppModel.sharedModel.getCountry()
+let americanNumbers: ContactNumbers = ContactNumbers(voiceNumber: "(330) 269-5471", textNumber: "792-273")
+let canadianNumbers: ContactNumbers = ContactNumbers(voiceNumber: "(604) 425-1155", textNumber: "(604) 425-1155")

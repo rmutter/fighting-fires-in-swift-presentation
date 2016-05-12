@@ -1,0 +1,7 @@
+func postVerifyCodeWithCode(code: String, success: RestKitSuccess, failure: RestKitError) {
+    let sharedMgr = RKObjectManager.sharedManager()
+    sharedMgr.requestSerializationMIMEType = RKMIMETypeJSON
+    let obj = NSEntityDescription.insertNewObjectForEntityForName("VerificationRequest", inManagedObjectContext: sharedMgr.managedObjectStore.mainQueueManagedObjectContext) as! VerificationRequest
+    obj.code = code
+    sharedMgr.postObject(obj, path: "verify_code/", parameters: nil, success: success, failure: failure)
+}

@@ -1,0 +1,24 @@
+func createContact() -> Bool {
+  let newContact: ABRecordRef! = ABPersonCreate().takeRetainedValue()
+  var error: Unmanaged<CFErrorRef>?
+
+  let firstNameSuccess = ABRecordSetValue(newContact, kABPersonFirstNameProperty, self.firstName, &error)
+  let lastNameSuccess = ABRecordSetValue(newContact, kABPersonLastNameProperty, self.lastName, &error)
+
+  if let image = image {
+    let pngImage = UIImagePNGRepresentation(image)!
+    let cfDataRef = CFDataCreate(nil, UnsafePointer(pngImage.bytes), pngImage.length)
+    ABPersonSetImageData(newContact, cfDataRef, &error)
+  }
+
+  let multiStringProperty = ABPropertyType(kABMultiStringPropertyType)
+  let phoneNumbers: ABMutableMultiValue = ABMultiValueCreateMutable(multiStringProperty).takeUnretainedValue()
+
+  ABMultiValueAddValueAndLabel(phoneNumbers, mainPhoneNumber, kABPersonPhoneMainLabel, nil)
+  let mainNumberSuccess = ABRecordSetValue(newContact, kABPersonPhoneProperty, phoneNumbers, &error)
+
+  ABMultiValueAddValueAndLabel(phoneNumbers, mobilePhoneNumber, kABPersonPhoneMobileLabel, nil)
+  let mobileNumberSuccess = ABRecordSetValue(newContact, kABPersonPhoneProperty, phoneNumbers, &error)
+
+  return saveContactToPhone(newContact)
+}

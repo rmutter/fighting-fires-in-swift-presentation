@@ -1,0 +1,6 @@
+def send_message(self, to_number, minutes, message, country):
+    send_time = timezone.now() + datetime.timedelta(minutes=minutes)
+    result = send_message.apply_async((to_number, message, country, self.pk),
+                                      eta=send_time,
+                                      expires=send_time + datetime.timedelta(minutes=settings.EXPIRATION_MINUTES))
+    self.save()

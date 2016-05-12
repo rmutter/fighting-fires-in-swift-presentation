@@ -1,0 +1,8 @@
+@objc(VerificationRequest)
+class VerificationRequest: NSManagedObject {
+
+}
+
+extension VerificationRequest {
+    @NSManaged var code: String?
+}

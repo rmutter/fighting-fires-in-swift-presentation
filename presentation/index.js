@@ -6,6 +6,7 @@ import {
   Appear,
   BlockQuote,
   Cite,
+  Code,
   CodePane,
   Deck,
   Fill,
@@ -29,19 +30,12 @@ import preloader from "spectacle/lib/utils/preloader";
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
 
-// Import custom component
-import Interactive from "../assets/interactive";
-
 // Require CSS
 require("normalize.css");
 require("spectacle/lib/themes/default/index.css");
 
 
 const images = {
-  city: require("../assets/city.jpg"),
-  kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
-  markdown: require("../assets/markdown.png"),
   everythingIsFine: require("../assets/everything-is-fine.jpg"),
   netflixAndChill: require("../assets/netflix-and-chill.jpg"),
   yetiHead: require("../assets/yeti-head-white.png"),
@@ -59,7 +53,21 @@ const images = {
   tinyEyeLogo: require("../assets/tiny-eye-logo.png"),
   sfDjango: require("../assets/django-sf.jpg"),
   terminalIcon: require("../assets/terminal-icon.png"),
-  systemDiagram: require("../assets/gotta-go-diagram.jpg")
+  systemDiagram: require("../assets/gotta-go-diagram.jpg"),
+  verifyScreenshot: require("../assets/verify-screenshot.png"),
+  viperModule: require("../assets/viper-module.png"),
+  contactScreenshot: require("../assets/save-contact.png"),
+  excuseScreenshot: require("../assets/excuse-screenshot.png"),
+  chelseaQuestions: require("../assets/chelsea-questions.png"),
+  emojiKeyboardScreenshot: require("../assets/emoji-keyboard-screenshot.png"),
+  moreNumbers: require("../assets/more-numbers.jpg"),
+  todayRuff: require("../assets/today-ruff.jpg"),
+  hundredEmoji: require("../assets/100-emoji.png"),
+  oops: require("../assets/oops.gif"),
+  coolDog: require("../assets/cool-dog.jpg"),
+  sentryLogo: require("../assets/sentry-icon.png"),
+  newRelicLogo: require("../assets/new-relic-logo.jpg"),
+  fabricLogo: require("../assets/fabric-logo.png")
 };
 
 preloader(images);
@@ -175,7 +183,7 @@ export default class Presentation extends React.Component {
                   <ListItem>Python/Django Backend 🐍</ListItem>
                   <ListItem>Celery/RabbitMQ for async</ListItem>
                   <ListItem>Swift iOS App</ListItem>
-                  <ListItem>Core Data</ListItem>
+                  <ListItem>RestKit + Core Data</ListItem>
                   <ListItem>Plivo for Telephony Service</ListItem>
                 </List>
               </Fill>
@@ -184,35 +192,273 @@ export default class Presentation extends React.Component {
               </Fit>
             </Layout>
           </Slide>
-          <Slide>
-            <Heading fit caps>Verifying Number</Heading>
+          <Slide maxWidth={1250}>
+            <Heading fit caps>Verifying Your Number</Heading>
+            <Layout>
+              <Fit>
+                <Image src={images.verifyScreenshot.replace("/", "")} margin="60px 60px 0 0" height="500px"/>
+              </Fit>
+              <Fill>
+                <List padding="60px 0 0">
+                  <ListItem>User enters their number</ListItem>
+                  <ListItem>Server pings telephony service to text code</ListItem>
+                  <ListItem>User inputs code to verify their number</ListItem>
+                  <ListItem>Pretty standard</ListItem>
+                </List>
+              </Fill>
+            </Layout>
           </Slide>
           <Slide>
-            <Heading fit caps>Adding Contacts</Heading>
+            <Heading fit caps>Verifying Cont. - VIPER</Heading>
+            <Text textSize="1.5em" textColor="secondary">RestKit API Call</Text>
+            <CodePane
+              lang="swift"
+              source={require("raw!../assets/code_samples/interactor.example")}
+              margin="20px auto"
+            />
+            <Layout>
+              <Fill>
+                <Text textSize="1.5em" textColor="secondary">A VIPER Module</Text>
+                <Image src={images.viperModule.replace("/", "")} margin="20px 0 0 0" height="200px"/>
+              </Fill>
+              <Fill>
+                <Text textSize="1.5em" textColor="secondary">Core Data Classes</Text>
+                <CodePane
+                  lang="swift"
+                  source={require("raw!../assets/code_samples/core-data.example")}
+                  margin="20px auto"
+                />
+              </Fill>
+            </Layout>
+          </Slide>
+          <Slide maxWidth={1250}>
+            <Heading fit caps>Adding Contacts - AddressBook</Heading>
+            <Layout>
+              <Fit>
+                <Image src={images.contactScreenshot.replace("/", "")} margin="60px 60px 0 0" height="500px"/>
+              </Fit>
+              <Fill>
+                <List padding="60px 0 0 0">
+                  <ListItem>Add/Edit contact with our numbers</ListItem>
+                  <ListItem>Allow user to edit name + photo</ListItem>
+                  <ListItem>When editing, delete then re-add</ListItem>
+                  <ListItem>Built before iOS 9's new contact framework</ListItem>
+                </List>
+              </Fill>
+            </Layout>
+          </Slide>
+          <Slide>
+            <Heading fit caps>Adding Contacts Cont.</Heading>
+            <Text textSize="1.5em" textColor="secondary" margin="20px 0 0">
+              Store numbers appropriate to user's country
+            </Text>
+            <CodePane
+              lang="swift"
+              source={require("raw!../assets/code_samples/numbers.example")}
+              margin="20px auto"
+            />
+          </Slide>
+          <Slide>
+            <Heading fit caps>Adding Contacts Cont. II</Heading>
+            <Text textSize="1.5em" textColor="secondary" margin="20px 0 0">
+              Find contact with a matching number
+            </Text>
+            <CodePane
+              lang="swift"
+              source={require("raw!../assets/code_samples/find-contact.example")}
+              margin="20px auto"
+            />
+          </Slide>
+          <Slide>
+            <Heading fit caps>Adding Contacts Cont. III</Heading>
+            <Text textSize="1.5em" textColor="secondary" margin="20px 0 0">
+              Set name, image, and numbers on new contact
+            </Text>
+            <CodePane
+              lang="swift"
+              source={require("raw!../assets/code_samples/create-contact.example")}
+              margin="20px auto"
+            />
           </Slide>
           <Slide>
             <Heading fit caps>Saving & Creating Excuses</Heading>
+            <Layout>
+              <Fit>
+                <Image src={images.excuseScreenshot.replace("/", "")} margin="60px 60px 0 0" height="500px"/>
+              </Fit>
+              <Fill>
+                <List padding="60px 0 0 0">
+                  <ListItem>Craft a believable story</ListItem>
+                  <ListItem>Add up to 1 phone call and 7 texts</ListItem>
+                  <ListItem>Excuses stored locally in Core Data</ListItem>
+                  <ListItem>Schedule it for X mins/hours later</ListItem>
+                </List>
+              </Fill>
+            </Layout>
           </Slide>
           <Slide>
-            <Heading fit caps>Emoji Keyboard (Credit @leemcdole)</Heading>
+            <Heading fit caps>Saving & Creating Excuses Cont.</Heading>
+            <Text textSize="1.5em" textColor="secondary" margin="20px 0 0">
+              Fetch user's excuses from Core Data
+            </Text>
+            <CodePane
+              lang="swift"
+              source={require("raw!../assets/code_samples/get-excuses.example")}
+              margin="20px auto"
+            />
+            <Text textSize="1.5em" textColor="secondary" margin="40px 0 0">
+              Create default excuses first time through (Emoji's in Xcode!)
+            </Text>
+            <CodePane
+              lang="swift"
+              source={require("raw!../assets/code_samples/default-excuse.example")}
+              margin="20px auto"
+            />
+          </Slide>          
+          <Slide maxWidth={1250}>
+            <Heading fit caps>Emoji Keyboard for Excuses</Heading>
+            <Layout>
+              <Fit>
+                <Image src={images.emojiKeyboardScreenshot.replace("/", "")} margin="50px 60px 0 0" height="500px"/>
+              </Fit>
+              <Fill>
+                <Heading textSize="1.5em" textColor="secondary" margin="50px 0 0 0" caps>
+                  Some Considerations
+                </Heading>
+                <List padding="0 0 0 0">
+                  <ListItem>Older OS's don't support new emojis</ListItem>
+                  <ListItem>Different skin toned emojis</ListItem>
+                  <ListItem>Saving emoji preference</ListItem>
+                  <ListItem>Grouping emojis together</ListItem>
+                  <ListItem>Credit @leemcdole</ListItem>
+                </List>
+              </Fill>
+            </Layout>
           </Slide>
           <Slide>
-            <Heading fit caps>Scheduling Excuses (Python)</Heading>
+            <Heading fit caps>Scheduling Excuses (Server)</Heading>
+            <Text textSize="1.5em" textColor="secondary" margin="40px 0 0">
+              Schedule a task to ping the telephony service X mins later
+            </Text>
+            <CodePane
+              lang="python"
+              source={require("raw!../assets/code_samples/send_message.example")}
+              margin="20px auto"
+            />
           </Slide>
           <Slide>
+            <Heading fit caps>Scheduling Excuses (Server) Cont.</Heading>
+            <Text textSize="1.5em" textColor="secondary" margin="40px 0 0">
+              Plivo provided a library for sending SMS or Voice
+            </Text>
+            <CodePane
+              lang="python"
+              source={require("raw!../assets/code_samples/plivo_api.example")}
+              margin="20px auto"
+            />
+          </Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>Fixing the Fires Part #1</Heading>
+            <Layout>
+              <Fill>
+                <List padding="60px 0 0 0">
+                  <ListItem>Purchased 10 more numbers</ListItem>
+                  <ListItem>Round robin sending texts between them</ListItem>
+                  <ListItem>Texts coming from wrong number</ListItem>
+                  <ListItem>Traffic on the app was increasing</ListItem>
+                  <ListItem>Banned again after an hour</ListItem>
+                </List>
+              </Fill>
+              <Fit>
+                <Image src={images.moreNumbers.replace("/", "")} margin="150px 0 0 25px" height="275px"/>
+              </Fit>
+            </Layout>
           </Slide>
-          <Slide>
+          <Slide maxWidth={1250}>
             <Heading fit caps>Fixing the Fires Part #2</Heading>
+            <Layout>
+              <Fit>
+                <Image src={images.todayRuff.replace("/", "")} margin="100px 60px 0 0" height="400px"/>
+              </Fit>
+              <Fill>
+                <List padding="60px 0 0 0">
+                  <ListItem>Bought a Shortcode</ListItem>
+                  <ListItem>Meant for high volume texts</ListItem>
+                  <ListItem>Much more expensive then before</ListItem>
+                  <ListItem>Hindsight 50/50</ListItem>
+                  <ListItem>Weekend had ~20k verified users</ListItem>
+                </List>
+              </Fill>
+            </Layout>
+          </Slide>
+          <Slide maxWidth={1250}>
+            <Heading fit caps>Fixing the Fires Part #3</Heading>
+            <Text textSize="1.5em" textColor="secondary" margin="40px 0 0">
+              iOS app has hardcoded numbers 😫
+            </Text>
+            <Text textSize="1.5em" textColor="secondary" margin="40px 0 0">
+              Submitted emergency build to Apple, approved next day 👏
+            </Text>
           </Slide>
           <Slide>
-            <Heading fit caps>What did we do Right?</Heading>
+            <Heading fit caps>What did we do wrong?</Heading>
+            <Layout>
+              <Fill>
+                <List padding="60px 0 0 0">
+                  <ListItem>Contact numbers should be dynamic</ListItem>
+                  <ListItem>^ Served via the API</ListItem>
+                  <ListItem>Load balance tested SMS/Voice sending</ListItem>
+                  <ListItem>Beta test was not enough messages/second</ListItem>
+                </List>
+              </Fill>
+              <Fit>
+                <Image src={images.oops.replace("/", "")} margin="100px 0 0 25px" height="300px"/>
+              </Fit>
+            </Layout>
           </Slide>
           <Slide>
-            <Heading fit caps>What should we have done differently?</Heading>
+            <Heading fit caps>What did we do right?</Heading>
+            <Text textSize="2em" textColor="secondary" margin="40px 0">
+              Analytics and Monitoring!
+            </Text>
+            <Layout>
+              <Fill>
+                <Image src={images.sentryLogo.replace("/", "")} height="200px"/>
+              </Fill>
+              <Fill>
+                <Image src={images.newRelicLogo.replace("/", "")} height="200px"/>
+              </Fill>
+              <Fill>
+                <Image src={images.fabricLogo.replace("/", "")} height="200px"/>
+              </Fill>
+            </Layout>
           </Slide>
-          <Slide>
-            <Heading fit caps>Questions?</Heading>
+          <Slide bgImage={images.hundredEmoji.replace("/", "")} bgDarken={0.75}>
+            <Heading fit caps>Thanks to Devs @ Yeti!</Heading>
+            <Layout>
+              <Fill>
+                <List padding="60px 0 0 0">
+                  <ListItem>@alekhinen</ListItem>
+                  <ListItem>@anyatran</ListItem>
+                  <ListItem>@baylee</ListItem>
+                  <ListItem>@leemcdole</ListItem>
+                  <ListItem>@paolopaolopaolo</ListItem>
+                </List>
+              </Fill>
+              <Fill>
+                <List padding="60px 0 0 0">
+                  <ListItem>@rmutter</ListItem>
+                  <ListItem>@tonydotsc</ListItem>
+                  <ListItem>@walkingtowork</ListItem>
+                  <ListItem>@winnietong</ListItem>
+                  <ListItem>@ZachGawlik</ListItem>
+                </List>
+              </Fill>
+            </Layout>
+          </Slide>
+          <Slide bgImage={images.chelseaQuestions.replace("/", "")} bgDarken={0.5}>
+            <Image src={images.yetiHead.replace("/", "")} margin="0" height="300px"/>
+            <Heading fit caps>Any Questions?</Heading>
           </Slide>
         </Deck>
       </Spectacle>

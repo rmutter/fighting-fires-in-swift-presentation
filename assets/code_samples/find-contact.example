@@ -1,0 +1,23 @@
+static func findContact(number: String) -> ABRecordRef? {
+  if Contact.hasAddressBookAccess() {
+    var error: Unmanaged<CFError>?
+    // create address book instance
+    let addressBook: ABAddressBookRef = ABAddressBookCreateWithOptions(nil, &error).takeUnretainedValue()
+    // get all contacts
+    let contacts = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue() as Array
+    for record in contacts {
+      let currentContact: ABRecordRef = record
+      let numbers: ABMultiValueRef = ABRecordCopyValue(currentContact, kABPersonPhoneProperty).takeUnretainedValue()
+      // loop through contact's numbers
+      for (var j = 0; j < ABMultiValueGetCount(numbers); j++) {
+        let phoneNumber = ABMultiValueCopyValueAtIndex(numbers, j).takeUnretainedValue() as! String
+        // if the phone number matches the first contact number, we've got a contact match.
+        if phoneNumber == number {
+          return currentContact
+        }
+      }
+    }
+  }
+
+  return nil
+}

@@ -1,0 +1,10 @@
+newExcuse = Excuse.createInManagedObjectContext(managedObjectContext!,
+  emoji: "👮",
+  color: Constants.excuseCellColors[5],
+  delayTimeMinutes: 0)
+let lockedOutMessages: [String?] = [
+  "I'm locked out.",
+  "Think I may have triggered the silent alarm. Can you get here right away?",
+  "Last time I did this the cops showed up. PLEASE HURRY!"
+]
+addMessagesToExcuse(lockedOutMessages, excuse: newExcuse)

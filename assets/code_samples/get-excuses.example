@@ -1,0 +1,6 @@
+func getExcuses() -> [Excuse] {
+  let fetchRequest = NSFetchRequest(entityName: "Excuse")
+  let createdSortDescriptor = NSSortDescriptor(key: "createdAt", ascending: false)
+  fetchRequest.sortDescriptors = [createdSortDescriptor]
+  return (try! managedObjectContext!.executeFetchRequest(fetchRequest)) as! [Excuse]
+}
